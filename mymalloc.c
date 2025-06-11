@@ -11,35 +11,6 @@
 #define memorySIZE 4096
 static char memory[memorySIZE];
 
-    //gcc -E err.c
-
-    //our version should detect when given a bad pointer, not returned to malloc
-        //Calling free() with an address not obtained from malloc()
-        //Calling free() with an address not at the start of a chunk
-        //Calling free() a second time on the same pointer.
-
-    //address sanitizer won't help so there's no point in activating it
-
-    //Your malloc() and free() functions MUST use the storage array for all storage purposes. 
-    //You may not declare other global variables or static local variables or use any 
-        //dynamic memory features provided by the standard library.
-    //Both the chunks provided to client code and the metadata used to track the chunks must be stored in your memory array
-
-    //The simplest structure to use for your metadata is a linked list. 
-    //Each chunk will be associated with the client’s data (the payload ) and the metadata used to maintain the list (the header ). 
-    //Since the chunks are continuous in memory, it is enough for the header to contain 
-        // (1) the size of the chunk
-        // (2) whether the chunk is allocated or free. 
-            //Given the location of one chunk, you can simply add its size to the location to get the next chunk. 
-            //The first chunk will always start at the beginning of memory.
-    
-    //The pointer returned by malloc() must point to the payload, not the chunk header.
-
-    //Note that your memory array, as a global variable, will be implicitly initialized to all zeros. 
-        //Your malloc() and free() functions must be able to detect when they are running with uninitialized memory 
-            // and set up the necessary data structures. 
-        //You are not permitted to require clients to call an initialize function before calling malloc().
-
 ////////////////////////////////////////////////////////////
 
 // Prints it - for testing
@@ -59,9 +30,6 @@ void printStuff(){
 
 
 ////////////////////////////////////////////////////////////
-
-
-
 
 
 // Malloc is an array.
