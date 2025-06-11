@@ -4,8 +4,6 @@
 #include <time.h>
 #include "mymalloc.h"
 
-//I moved all of the err.c cases to memgrind, so I can put all my test cases.
-
 int main(int argc, char **argv){
     int x, *p, *z, *v, *m;
     int test = argc > 1 ? atoi(argv[1]) : 0;
@@ -37,7 +35,7 @@ int main(int argc, char **argv){
         free(p);
         break;
 
-// 1. malloc() and immediately free() a 1-byte chunk, 120 times.
+// 1. malloc() and immediately free() a 1-byte chunk, 120 times
     case 4:
         for (int j = 0; j < 50; j++){
             for (int i = 0; i < val; i++){
@@ -48,7 +46,7 @@ int main(int argc, char **argv){
         break;
 
 // 2. Use malloc() to get 120 1-byte chunks, storing the pointers in an array, then use free() to
-    // deallocate the chunks.
+    // deallocate the chunks
     case 5:
         for (int j = 0; j < 50; j++){
             for (int i = 0; i < val; i++){
@@ -63,7 +61,7 @@ int main(int argc, char **argv){
 // 3. Randomly choose between
     // • Allocating a 1-byte chunk and storing the pointer in an array
     // • Deallocating one of the chunks in the array (if any)
-    // Repeat until you have called malloc() 120 times, then free all remaining allocated chunks.
+    // Repeat until you have called malloc() 120 times, then free all remaining allocated chunks
     case 6:
         for (int j = 0; j < 50; j++){
             while (mallocNum < 120){
@@ -86,10 +84,7 @@ int main(int argc, char **argv){
         break;
             // 50/50 change of allocating and deallocating
 
-// 4. Two more stress tests of your design. Document these in your README.
-    // Your program should run each task 50 times, recording the amount of time needed for each task,
-    // and then reporting the average time needed for each task. You may use gettimeofday() or similar
-    // functions to obtain timing information.
+// 4. Two more stress tests
     case 7:
         for (int i = 0; i < 50; i++){
             for (int j = 0; j < 15; j++){
